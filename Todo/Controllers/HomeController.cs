@@ -77,9 +77,11 @@ namespace Todo.Controllers
                Description=tarea.Description,
                IsCompleted=tarea.IsCompleted,
                Priority = tarea.Priority,
-               CategoryId=tarea.Category.Id,
-               DueDate=tarea.DueDate,
+               CategoryId=tarea.CategoryId,
+               DueDate=tarea.DueDate
+  
             });
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
