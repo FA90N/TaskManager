@@ -1,0 +1,46 @@
+﻿@model List<Tarea>
+@{
+    ViewData["Title"] = "Task";
+}
+<h1>@ViewData["Title"]</h1>
+
+<button><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="TaskForm">+</a></button>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>DueDate</th>
+            <th>Priority</th>
+            <th>IsCompleted</th>
+            <th>Category</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var task in Model)
+        {
+            <tr>
+                <th>@task.Id</th>
+                <th>@task.Title</th>
+                <th>@task.Description</th>
+                <th>@task.DueDate</th>
+                <th>@task.Priority</th>
+                <th>@task.IsCompleted</th>
+                <th>@task.Category.Name</th>
+
+                <td>
+                    <form action="@Url.Action("DeleteTask", "Home")" method="post">
+                        <input type="hidden" name="id" value="@task.Id" />
+                        <button type="submit">Eliminar</button>
+                    </form>
+                    <form action="@Url.Action("EditTask", "Home")" method="post">
+                        <input type="hidden" name="id" value="@task.Id" />
+                        <button type="submit">Editar</button>
+                    </form>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
